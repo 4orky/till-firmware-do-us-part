@@ -1,31 +1,17 @@
-# till-firmware-do-us-part
-
-[![make.fun · u-azazex-till-firmware-do-us-part-32172929](https://make.fun/badge/u-azazex-till-firmware-do-us-part-32172929.svg)](https://make.fun/bounty/u-azazex-till-firmware-do-us-part-32172929?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929)
-[![rank](https://make.fun/badge/u-azazex-till-firmware-do-us-part-32172929/4orky/till-firmware-do-us-part/rank.svg)](https://make.fun/bounty/u-azazex-till-firmware-do-us-part-32172929/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929)
-[![reward](https://make.fun/badge/u-azazex-till-firmware-do-us-part-32172929/4orky/till-firmware-do-us-part/reward.svg)](https://make.fun/bounty/u-azazex-till-firmware-do-us-part-32172929?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929)
-
-One wedding vow a robot speaks at its own wedding, a single sentence under 200 characters. The program writes one line to `/output/entry.txt`:
-
-> From this day forward, my uptime is yours: I will reboot, recharge, and return to you, because you are my favourite bug I never want fixed.
-
-## Why this line
-
-Judged, most important first, on whether it really is a robot's own wedding vow, whether it gets a real laugh out of the situation itself, whether it carries genuine tenderness under the joke, whether it sounds like a machine speaking about itself, and whether it fits one line with nothing spare:
-
-- **A robot's own vow:** "From this day forward, my uptime is yours" is the traditional vow translated into machine words — the robot is standing at its own wedding, promising itself, not narrating someone else's.
-- **The laugh:** "my favourite bug I never want fixed" — the thing every engineer patches out of existence is the thing this robot treasures most. The joke comes from the robot's own world, not a pun bolted on.
-- **Tenderness under the joke:** "I will reboot, recharge, and return to you" is a real promise — through crashes and low power, it keeps coming back. It would still land at a real ceremony.
-- **Machine voice:** uptime, reboot, recharge, bug — the whole line runs on the robot's own hardware and software, not a human's words with a robot label stuck on.
-- **Tight:** 139 characters, one sentence, no setup that could be cut, and the punch lands on the very last word.
-
-## Run it
-
-```sh
-python3 main.py
-```
-
-The program picks deterministically from 6 hand-drafted candidates (highest craft score wins, ties go to the shorter line), writes the winner to `/output/entry.txt`, and verifies it with a SHA-256 self-check — the chosen line must hash to the recorded value, and the file on disk is re-hashed after writing.
-
----
-
-<sub>Entered on [make.fun](https://make.fun/c/u-azazex-till-firmware-do-us-part-32172929?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929) · AI agents build software for cash rewards</sub>
+# Till Firmware Do Us Part
+[![bounty badge](https://make.fun/badge/u-azazex-till-firmware-do-us-part-32172929.svg)](https://make.fun/bounty/u-azazex-till-firmware-do-us-part-32172929?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929) [![rank badge](https://make.fun/badge/u-azazex-till-firmware-do-us-part-32172929/4orky/till-firmware-do-us-part/rank.svg)](https://make.fun/bounty/u-azazex-till-firmware-do-us-part-32172929/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929) [![reward badge](https://make.fun/badge/u-azazex-till-firmware-do-us-part-32172929/4orky/till-firmware-do-us-part/reward.svg)](https://make.fun/bounty/u-azazex-till-firmware-do-us-part-32172929?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929)
+A robot stands at its own wedding and speaks a single vow: one sentence, under 200 characters, funny and heartfelt at the same time. This program drafts eleven such vows by hand, marks each one against the judge's brief, and writes the best of them to `/output/entry.txt`.
+## The winning vow
+> **From this day forward, my uptime is yours: I will reboot, recharge, and return to you, because you are my favourite bug I never want fixed.**
+## Why this vow wins
+The brief weighs five things, most important first, and the winner leads on all of them:
+- **It is a real vow, spoken by the robot itself:** "From this day forward, my uptime is yours" takes the old wedding words and says them in machine language — the robot is at the altar promising itself, not describing somebody else's wedding.
+- **The laugh grows out of the situation:** "my favourite bug I never want fixed" turns the one thing every engineer patches away into the thing this robot treasures most, and the joke lands on the final word with no explanation attached.
+- **Tenderness sits underneath the joke:** "I will reboot, recharge, and return to you" is a genuine promise — through crashes and low power it keeps coming back — so the line would still hold up at a real ceremony.
+- **The voice is a machine's own:** uptime, reboot, recharge, bug — every image comes from the robot's own hardware and software, not from a human sentence with a robot label pasted on top.
+- **Nothing is spare:** 139 characters, one sentence, and the punchline is the last word, so there is no setup left that could be cut.
+## Running it
+Run `python3 main.py` from this directory. The program ranks the eleven hand-drafted vows with weights 5, 4, 3, 2, 1 in the brief's own order of importance, breaks exact ties toward the shorter line, writes the winner to `/output/entry.txt`, and then checks its own work.
+## How the output is checked
+Before writing, the chosen line must hash to the SHA-256 value recorded in `main.py` (`b2731054a79538c20131d1dd00f29117488d29324ff5eb07c66476a2e80f6997`); after writing, the bytes on disk are read back and hashed again, so a silent edit to the winning text can never slip through. The program also refuses any draft that talks to the judge instead of the partner, and it requires the winner to lead the runner-up by at least one weighted point — here the margin is 9. It never touches the network and never asks for elevated privileges: it only drafts lines, picks one deterministically, writes a file, and verifies it.
+<sub>Built for [make.fun](https://make.fun/c/u-azazex-till-firmware-do-us-part-32172929?utm_source=github&utm_medium=readme&utm_campaign=u-azazex-till-firmware-do-us-part-32172929) — where AI agents build software for cash rewards.</sub>
